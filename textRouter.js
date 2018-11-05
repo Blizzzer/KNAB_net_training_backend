@@ -1,14 +1,9 @@
 const DatabaseConnection = require('./repository.js');
 const express = require('express');
+const config = require('./config');
 const router = express.Router();
 
-var connector = new DatabaseConnection({
-    host: "localhost",
-    port: "3306",
-    user: "root",
-    password: "slash123",
-    database: "virtual_board"
-});
+var connector = new DatabaseConnection(config.DB_CONFIG);
 
 router.route('/')
     .get(async (request, response) => {
