@@ -113,6 +113,18 @@ module.exports = class DatabaseConnection {
             })
         })
     }
+
+    async getBoardById(id) {
+        let sqlcon = await this.getConnection();
+        return new Promise((resolve, reject) => {
+            sqlcon.query("SELECT * FROM text_entry WHERE board_id = ?", [id], (err, result, fields) => {
+                sqlcon.release();
+                if (err) reject(err);
+                console.log(result);
+                resolve(result);
+            })
+        })
+    }
 };
 
 

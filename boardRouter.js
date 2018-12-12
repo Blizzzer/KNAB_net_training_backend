@@ -55,5 +55,19 @@ router.route('/')
         }
     });
 
+router.route('/:boardId')
+    .get(async (request, response) => {
+        let id = request.body.id;
+        try {
+            response.send(
+                await connector.getBoardById(id)
+            )
+        } catch (e) {
+            console.log(e);
+            response.status(403);
+            response.send("FAILED");
+        }
+    });
+
 
 module.exports = router;
